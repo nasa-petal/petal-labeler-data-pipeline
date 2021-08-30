@@ -1,0 +1,170 @@
+Level I,Level II,Level III,Alevel I,Alevel II,Alevel III
+Attach,Attach permanently,RAISE,Move or stay put,Attach,Attach permanently
+Attach,Attach temporarily,RAISE,,,Attach temporarily
+,,MANUAL LABEL,,Move,Move in/on liquids
+,,MANUAL LABEL,,,Move in/on solids
+,,MANUAL LABEL,,,Move in/through gases
+,,,,,
+Protect from living or non-living threats,Protect from living threats,KEEP,Protect from physical harm,Protect from living threats,Protect from animals
+Protect from living or non-living threats,Protect from living threats,KEEP,,,Protect from plants
+Protect from living or non-living threats,Protect from living threats,KEEP,,,Protect from fungi
+Protect from living or non-living threats,Protect from living threats,KEEP,,,Protect from microbes
+Protect from living or non-living threats,Protect from non-living threats,KEEP,,Protect from non-living threats,Protect from excess liquids
+Protect from living or non-living threats,Protect from non-living threats,KEEP,,,Protect from wind
+Protect from living or non-living threats,Protect from non-living threats,KEEP,,,Protect from loss of liquids
+Protect from living or non-living threats,Protect from non-living threats,KEEP,,,Protect from gases
+,,DELETE,,,Protect from loss of gases
+Protect from living or non-living threats,Protect from non-living threats,KEEP,,,Protect from dirt/solids
+Protect from living or non-living threats,Protect from non-living threats,KEEP,,,Protect from light
+Protect from living or non-living threats,Protect from non-living threats,KEEP,,,Protect from chemicals
+Protect from living or non-living threats,Protect from non-living threats,KEEP,,,Protect from fire
+Protect from living or non-living threats,Protect from non-living threats,KEEP,,,Protect from ice
+Protect from living or non-living threats,Protect from non-living threats,KEEP,,,Protect from temperature
+Protect from living or non-living threats,Protect from non-living threats,KEEP,,,Protect from nuclear radiation
+Manage mechanical forces,Manage structural forces,KEEP,,Manage structural forces,Manage shear
+,,DELETE,,,Manage thermal shock
+Manage mechanical forces,Manage structural forces,KEEP,,,Manage impact
+Manage mechanical forces,,MANUAL LABEL,,,Manage tension
+Manage mechanical forces,Manage structural forces,Manage drag/turbulence,,,Manage turbulence
+Manage mechanical forces,Manage structural forces,Manage wear,,,Manage mechanical wear
+Manage mechanical forces,Manage structural forces,Manage wear,,,Manage chemical wear
+Manage mechanical forces,Prevent structural failure,Prevent or allow deformation,,,Manage creep
+,Manage stress/strain,MANUAL LABEL,,,Manage compression
+,,DELETE,,Regulate physiological processes,Regulate cellular processes
+Sustain ecological community,Individual benefit,Maintain homeostasis/equillibrium,,,Maintain homeostasis
+Sustain ecological community,Individual benefit,KEEP,,,Regulate reproduction or growth
+Manage mechanical forces,Prevent structural failure,KEEP,,Prevent structural failure,Prevent buckling
+Manage mechanical forces,Prevent structural failure,Prevent or allow deformation,,,Prevent deformation
+Manage mechanical forces,Prevent structural failure,KEEP,,,Prevent fatigue
+,,DELETE,,,Preventing melting
+Manage mechanical forces,Prevent structural failure,KEEP,,,Prevent fracture/rupture
+,,,,,
+Sustain ecological community,Group benefit,KEEP,Maintain community,Coordinate,Coordinate by self-organization
+,,DELETE,,,Coordinate activities
+,,DELETE,,,Coordinate systems
+Sustain ecological community,Group benefit,Cooperate within or between species,,Cooperate,Cooperate within the same species
+Sustain ecological community,Group benefit,Compete within or between species,,,Cooperate/compete between different species
+,,DELETE,,,Cooperate within an ecosystem
+,,DELETE,,,Cooperate/compete between (eco)systems
+Sustain ecological community,Group benefit,Manage environmental disturbance in a community,,Provide ecosystem services,Manage disturbance in a community
+,,DELETE,,,Regulate hydrological flows
+,,DELETE,,,Pollinate
+,,DELETE,,,Generate soil/renew fertility
+"Manipulate solids, liquids, gases, or energy",Detox/purify,RAISE,,,Detoxification/purification of air/water/waste
+Manage mechanical forces,Prevent structural failure,Control erosion,,,Control erosion and sediment
+,,DELETE,,,Regulate water storage
+,,DELETE,,,Cycle nutrients
+,,DELETE,,,Regulate atmospheric chemical/gas composition
+Modify or convert energy,,DELETE,,,Regulate climate
+,,DELETE,,,Disperse seeds
+Sustain ecological community,Group benefit,KEEP,,,Maintain biodiversity
+Sustain ecological community,Group benefit,Manage populations/pests/diseases,,,"Biological control of populations, pests, diseases"
+,,,,,
+Change size or color,Change size/shape,RAISE,Modify,Modify physical state,Modify size/shape/mass/volume
+,,DELETE,,,Modify pressure
+Physically assemble/disassemble,,DELETE,,,Modify density
+,,DELETE,,,Modify phase
+,,DELETE,,,Modify buoyancy
+Change size or color,Modify color,MANUAL LABEL,,,Modify light/color
+"Sense, send, or process information",,DELETE,,,Modify material characteristics
+,,DELETE,,,Modify speed
+,,DELETE,,,Modify position
+,,DELETE,,Modify chemical/electrical state,Modify energy state
+,,DELETE,,,Modify free radical reactivity
+,,DELETE,,,"Modify concentration (of ions, solutes, etc.)"
+,,DELETE,,,Modify chemical potential
+,,DELETE,,,Modify reactivity with water
+,,DELETE,,,Modify oxidation state
+,,DELETE,,,Modify electric charge
+,,DELETE,,,Modify conductivity
+,,DELETE,,,Modify surface tension
+,,DELETE,,,Modify pH
+,,DELETE,,,"Modify solubility (dissolving, emulsifying, precipitating, crystallizing)"
+,,DELETE,,,Modify electron transport
+,,DELETE,,,Chemically generate flow of electrons (redox)
+,,DELETE,,Adapt/optimize,Adapt genotype
+,,DELETE,,,Adapt phenotype
+,,DELETE,,,Coevolve
+,,DELETE,,,Adapt behaviors
+Physically assemble/disassemble,Optimize shape/materials,RAISE,,,Optimize shape/materials
+Modify or convert energy,Modify/convert electrical energy,RAISE,,Transform/convert energy,Transform electrical energy
+Modify or convert energy,Modify/convert magnetic energy,RAISE,,,Transform magnetic energy
+Modify or convert energy,Modify/convert chemical energy,RAISE,,,Transform chemical energy
+Modify or convert energy,Modify/convert mechanical energy,RAISE,,,Transform mechanical energy
+Modify or convert energy,Modify/convert thermal energy,RAISE,,,Transform thermal energy
+Modify or convert energy,Modify/convert light energy,RAISE,,,Transform radiant energy (light)
+,,,,,
+Sustain ecological community,Individual benefit,KEEP,Make,Reproduce,Self-replicate
+Physically assemble/disassemble,Physically assemble structure,RAISE,,Physically assemble,Physically assemble structure
+,,DELETE,,Chemically assemble,Chemically assemble polymers
+,,DELETE,,,Chemically assemble metal-based compounds
+,,DELETE,,,Chemically assemble molecular devices
+,,DELETE,,,Chemically assemble specific stereo isomers
+,,DELETE,,,Chemically assemble mineral crystals
+Chemically assemble or break down,Chemically assemble,KEEP,,,Chemically assemble inorganic compounds
+Chemically assemble or break down,Chemically assemble,KEEP,,,Chemically assemble organic compounds
+,,DELETE,,,Attach a functional group
+,,DELETE,,,Detach a functional group
+,,DELETE,,,Catalyze chemical assembly
+Chemically assemble or break down,Chemically assemble,Self-assemble,,,Chemically assemble on demand
+,,,,,
+,,MANUAL LABEL,Process information,Navigate,Navigate through air
+,,MANUAL LABEL,,,Navigate through liquid
+,,MANUAL LABEL,,,Navigate over land
+,,MANUAL LABEL,,,Navigate through solids
+"Sense, send, or process information",Send signals,KEEP,,Send signals,Send light signals in the visible spectrum
+"Sense, send, or process information",Send signals,KEEP,,,Send light signals in the non-visible spectrum
+"Sense, send, or process information",Send signals,KEEP,,,Send sound signals
+"Sense, send, or process information",Send signals,KEEP,,,Send tactile signals
+"Sense, send, or process information",Send signals,KEEP,,,"Send chemical signals (odor, taste, etc.)"
+"Sense, send, or process information",Send signals,KEEP,,,Send vibratory signals
+"Sense, send, or process information",Send signals,KEEP,,,Send electrical/magnetic signals
+"Sense, send, or process information",Process signals,KEEP,,Process signals,Differentiate signal from noise
+"Sense, send, or process information",Process signals,Convert signals,,,Transduce/convert signals
+"Sense, send, or process information",Process signals,KEEP,,,Respond to signals
+"Sense, send, or process information",Sense signals/environmental cues,Sense light in the visible spectrum,,Sense signals/environmental cues,Sense light (visible spectrum) from the environment
+"Sense, send, or process information",Sense signals/environmental cues,Sense light in the non-visible spectrum,,,Sense light (non-visible spectrum) from the environment
+"Sense, send, or process information",Sense signals/environmental cues,Sense electricity/magnetism,,,Sense electricity/magnetism from the environment
+"Sense, send, or process information",Sense signals/environmental cues,KEEP,,,Sense disease in a living system
+"Sense, send, or process information",Sense signals/environmental cues,Sense touch and mechanical forces,,,Sense touch and mechanical forces in a living system
+"Sense, send, or process information",Sense signals/environmental cues,"Sense chemicals (odor, taste, etc)",,,"Sense chemicals (odor, taste, etc) from the environment"
+"Sense, send, or process information",Sense signals/environmental cues,KEEP,,,Sense atmospheric conditions
+"Sense, send, or process information",Sense signals/environmental cues,Sense sound/vibrations,,,Sense sound and other vibrations from the environment
+"Sense, send, or process information",Sense signals/environmental cues,Sense temperature cues,,,Sense temperature cues from the environment
+"Sense, send, or process information",Sense signals/environmental cues,KEEP,,,Sense motion
+,,DELETE,,,Sense pain
+"Sense, send, or process information",Sense signals/environmental cues,Sense spatial awareness/balance/orientation,,,Sense body awareness
+"Sense, send, or process information",Sense signals/environmental cues,Sense spatial awareness/balance/orientation,,,Sense balance/orientation
+"Sense, send, or process information",Sense signals/environmental cues,Sense shape and/or pattern,,,Sense shape and pattern in a living system
+,,DELETE,,,Sense time and day length
+,,DELETE,,Compute,
+,,DELETE,,Learn,
+,,DELETE,,Encode/Decode,
+,,,,,
+,,DELETE,Break down,Chemically break down,Cleave heavy metals from organic compounds
+,,DELETE,,,Cleave halogens from organic compounds
+Chemically assemble or break down,Chemically break down,KEEP,,,Chemically break down inorganic compounds
+,,DELETE,,,Chemically break down polymers
+Chemically assemble or break down,Chemically break down,KEEP,,,Chemically break down organic compounds
+,,DELETE,,,Catalyze chemical breakdown
+Physically assemble/disassemble,Break down structure,RAISE,,Physically break down,Break down living materials
+Physically assemble/disassemble,Break down structure,RAISE,,,Break down non-living materials
+,,,,,
+,,MANUAL LABEL,"Get, store, or distribute resources","Capture, absorb, or filter","Capture, absorb, or filter organisms"
+,,MANUAL LABEL,,,"Capture, absorb, or filter solids"
+,,MANUAL LABEL,,,"Capture, absorb, or filter liquids"
+,,MANUAL LABEL,,,"Capture, absorb, or filter gases"
+"Manipulate solids, liquids, gases, or energy",Capture resources,Capture energy,,,"Capture, absorb, or filter energy"
+,,DELETE,,,"Capture, absorb, or filter chemical entities"
+"Manipulate solids, liquids, gases, or energy",Store resources,KEEP,,Store,Store solids
+"Manipulate solids, liquids, gases, or energy",Store resources,KEEP,,,Store liquids
+"Manipulate solids, liquids, gases, or energy",Store resources,KEEP,,,Store gases
+"Manipulate solids, liquids, gases, or energy",Store resources,KEEP,,,Store energy
+,,DELETE,,,Store chemical entities
+"Manipulate solids, liquids, gases, or energy",Distribute or expel resources,Distribute or expel solids,,Distribute,Distribute solids
+"Manipulate solids, liquids, gases, or energy",Distribute or expel resources,Distribute or expel liquids,,,Distribute liquids
+"Manipulate solids, liquids, gases, or energy",Distribute or expel resources,Distribute or expel gases,,,Distribute gases
+"Manipulate solids, liquids, gases, or energy",Distribute or expel resources,Distribute or expel energy,,,Distribute energy
+"Manipulate solids, liquids, gases, or energy",Expel resources,Distribute or expel solids,,Expel resources,Expel solids
+"Manipulate solids, liquids, gases, or energy",Expel resources,Distribute or expel liquids,,,Expel liquids
+"Manipulate solids, liquids, gases, or energy",Expel resources,Distribute or expel gases,,,Expel gases

@@ -1,0 +1,65 @@
+schema: '2.0'
+stages:
+  pullAskNature:
+    cmd: python algolia-downloader.py ask_nature_paper KK25DU67ZI bbd06cdca060a9aff6e5f52cf0ecab21
+    deps:
+    - path: algolia-downloader.py
+      md5: 2065700a4023edf3a07dc2f777cbb598
+      size: 3302
+    outs:
+    - path: ask_nature_paper.csv
+      md5: c6d8600fdd677e1e9ec4015adb229e33
+      size: 6451
+  getDOIs:
+    cmd: python get_dois.py ../algolia_downloader/ask_nature_paper.csv
+    deps:
+    - path: ../algolia_downloader/ask_nature_paper.csv
+      md5: c6d8600fdd677e1e9ec4015adb229e33
+      size: 6451
+    - path: get_dois.py
+      md5: 5c6e2b05fe3dc5b22f16e52063ff84a8
+      size: 2528
+    outs:
+    - path: doi_scraped_papers.csv
+      md5: 72cad2c2f0db563b8cc95d9dd7fc4e5f
+      size: 6852
+  convertAskNatureTaxonomy:
+    cmd: python AskNature/taxonomy/taxonomy_converter.py AskNature/doi_scraper/doi_scraped_papers.csv
+      AskNature/taxonomy/function_map.csv LabeledData/converted_paper
+    deps:
+    - path: AskNature/doi_scraper/doi_scraped_papers.csv
+      md5: 72cad2c2f0db563b8cc95d9dd7fc4e5f
+      size: 6852
+    - path: AskNature/taxonomy/taxonomy_converter.py
+      md5: 693456a4d3f37d0502b6b1e067eb204c
+      size: 3685
+    outs:
+    - path: AskNature/taxonomy/converted_paper.csv
+      md5: 8824170ced77dd98d1356aebf090fb20
+      size: 2996
+    - path: LabeledData/converted_paper.csv
+      md5: 8824170ced77dd98d1356aebf090fb20
+      size: 2996
+  combine:
+    cmd: python combine_csvs.py
+    deps:
+    - path: ../AskNature/taxonomy/converted_paper.csv
+      md5: 8824170ced77dd98d1356aebf090fb20
+      size: 2996
+    - path: combine_csvs.py
+      md5: bf4e8425e992ff6c803c0a01959306d7
+      size: 623
+    outs:
+    - path: merged_dataframes.csv
+      md5: 8824170ced77dd98d1356aebf090fb20
+      size: 2996
+  convert:
+    cmd: python convert_with_mag.py merged_dataframes.csv ../FinalFile/new_golden
+      d969a6c4bef34765ae7c5f0e75dd624e
+    deps:
+    - path: convert_with_mag.py
+      md5: 8ed2719f5152e096af9ed9c5c8135d0b
+      size: 7354
+    - path: merged_dataframes.csv
+      md5: 8824170ced77dd98d1356aebf090fb20
+      size: 2996
