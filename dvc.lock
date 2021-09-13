@@ -5,20 +5,20 @@ stages:
     deps:
     - path: algolia-downloader.py
       md5: 5d107ec59dce64b9a76903ca3848e8db
-      size: 5685
+      size: 5542
     outs:
     - path: ask_nature_paper.csv
       md5: ef455df4683f404b816e5d777323b3f4
-      size: 6528
+      size: 6506
   getDOIs:
     cmd: python get_dois.py ../algolia_downloader/ask_nature_paper.csv
     deps:
     - path: ../algolia_downloader/ask_nature_paper.csv
       md5: ef455df4683f404b816e5d777323b3f4
-      size: 6528
+      size: 6506
     - path: get_dois.py
       md5: 760924a4e6b42ffb2d0f8156134edf31
-      size: 2921
+      size: 2827
     outs:
     - path: doi_scraped_papers.csv
       md5: ef455df4683f404b816e5d777323b3f4
@@ -29,53 +29,53 @@ stages:
     deps:
     - path: AskNature/doi_scraper/doi_scraped_papers.csv
       md5: ef455df4683f404b816e5d777323b3f4
-      size: 6528
+      size: 6506
     - path: AskNature/taxonomy/taxonomy_converter.py
       md5: 2a6ad1058c40624e3bb1808e73d104f5
-      size: 5966
+      size: 5820
     outs:
     - path: AskNature/taxonomy/converted_paper.csv
-      md5: 85ca87d449b4ef908d7e5fd2036b43ad
-      size: 2908
+      md5: e03413fa88dc41d56161172256b8d120
+      size: 2900
     - path: LabeledData/converted_paper.csv
-      md5: 85ca87d449b4ef908d7e5fd2036b43ad
-      size: 2908
+      md5: e03413fa88dc41d56161172256b8d120
+      size: 2900
   combine:
     cmd: python combine_csvs.py
     deps:
     - path: ../AskNature/taxonomy/converted_paper.csv
-      md5: 85ca87d449b4ef908d7e5fd2036b43ad
-      size: 2908
+      md5: e03413fa88dc41d56161172256b8d120
+      size: 2900
     - path: combine_csvs.py
       md5: 22f637a5d9fabd46de9edacdb9c1c452
-      size: 833
+      size: 806
     outs:
     - path: merged_dataframes.csv
-      md5: 85ca87d449b4ef908d7e5fd2036b43ad
-      size: 2908
+      md5: e03413fa88dc41d56161172256b8d120
+      size: 2900
   convert:
-    cmd: python convert_with_mag.py merged_dataframes.csv ../Update/new_golden d969a6c4bef34765ae7c5f0e75dd624e
+    cmd: python convert_with_mag.py merged_dataframes.csv ../Update/new_data d969a6c4bef34765ae7c5f0e75dd624e
     deps:
     - path: convert_with_mag.py
-      md5: 046c208049ab1d42cead046e1df9e178
-      size: 8205
+      md5: 6b540770eaa22c890c1c81d1481baac9
+      size: 8051
     - path: merged_dataframes.csv
-      md5: 85ca87d449b4ef908d7e5fd2036b43ad
-      size: 2908
+      md5: e03413fa88dc41d56161172256b8d120
+      size: 2900
     outs:
-    - path: ../Update/new_golden.json
-      md5: c53688e68dc310df2cb4af7a64a32730
-      size: 3559
+    - path: ../Update/new_data.json
+      md5: ccdbcd1d8b0e190ee9a16a41100b76eb
+      size: 3698
   update:
-    cmd: python update_golden.py ../FinalFile/golden new_golden ../FinalFile/golden
+    cmd: python update_golden.py ../FinalFile/golden new_data ../FinalFile/new_golden
     deps:
-    - path: new_golden.json
-      md5: c53688e68dc310df2cb4af7a64a32730
-      size: 3559
+    - path: new_data.json
+      md5: ccdbcd1d8b0e190ee9a16a41100b76eb
+      size: 3698
     - path: update_golden.py
-      md5: 5f4349909e26a22499ee2f377781408c
-      size: 3024
+      md5: 08960bc6dda98a9cfaf5d80f7052b8a8
+      size: 3104
   validate:
     cmd:
     - python ./FinalFile/ge_validate.py
-    - zip -r ./FinalFile/report_$(date +"%m_%d_%Y_%H-%M-%S").zip ./great_expectations/uncommitted/data_docs
+    - zip -r ./FinalFile/Reports/report_$(date +"%m-%d-%Y-%H_%M_%S").zip ./great_expectations/uncommitted/data_docs
