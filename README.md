@@ -102,6 +102,12 @@ FinalFile
 
     - When complete, whether the validation was a success or a failure, a zipped file containing the report will be added to the Reports folder.
 
+## Extra Folders
+- PapersToLabel
+    - Any AskNature paper which cannot have its taxonomy converted to ours is separated out into a csv file placed here. These papers will need to have their labels manually converted. The resultant csv file will then need to be placed in the *LabeledData* folder.
+- great_expectations
+    - This folder contains all of the configuration files for great_expectations. It shouldn't be altered unless you are modifying any existing expectations, or adding in custom components.
+    
 ## How to Run
 This pipeline would ideally be run automatically through a service like GitHub Actions and would not need to be manually triggered. However, some cases may call for this, such as testing new stages on your local environment.
 
