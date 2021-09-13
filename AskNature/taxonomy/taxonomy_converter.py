@@ -129,7 +129,7 @@ def separate_manual_labels(full_dataframe: pd.DataFrame):
     updated_df = full_dataframe[full_dataframe["manual_label"] == False].copy()
     manual_df = full_dataframe[full_dataframe["manual_label"] == True].copy()
     if not manual_df.empty:
-        csv_count = len(glob.glob("../../PapersToLabel/*.csv"))
+        csv_count = len(glob.glob("./PapersToLabel/*.csv"))
         manual_df.drop("manual_label", inplace = True, axis = 1)
         manual_df.to_csv(f"./PapersToLabel/papers_to_label_{csv_count}.csv", index=False)
 
