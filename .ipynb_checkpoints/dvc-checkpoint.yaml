@@ -1,0 +1,56 @@
+stages:
+  pullAskNature:
+    wdir: AskNature/algolia_downloader
+    cmd: python algolia-downloader.py ask_nature_paper ${ALGOLIA_APP_ID} ${ALGOLIA_APP_KEY}
+    deps:
+    - algolia-downloader.py
+    outs:
+    - ask_nature_paper.csv
+
+  getDOIs:
+    wdir: AskNature/doi_scraper
+    cmd: python get_dois.py ../algolia_downloader/ask_nature_paper.csv
+    deps:
+    - get_dois.py
+    - ../algolia_downloader/ask_nature_paper.csv
+    outs:
+    - doi_scraped_papers.csv
+
+  convertAskNatureTaxonomy:
+    cmd: python AskNature/taxonomy/taxonomy_converter.py AskNature/doi_scraper/doi_scraped_papers.csv AskNature/taxonomy/function_map.csv LabeledData/converted_paper
+    deps:
+    - AskNature/taxonomy/taxonomy_converter.py
+    - AskNature/doi_scraper/doi_scraped_papers.csv
+    outs:
+    - AskNature/taxonomy/converted_paper.csv
+    - LabeledData/converted_paper.csv
+
+  combine:
+    wdir: LabeledData
+    cmd: python combine_csvs.py
+    deps:
+    - combine_csvs.py
+    - ../AskNature/taxonomy/converted_paper.csv
+    outs:
+    - merged_dataframes.csv
+
+  convert:
+    wdir: LabeledData
+    cmd: python convert_with_mag.py merged_dataframes.csv ../Update/new_data ${MAG_KEY}
+    deps:
+    - convert_with_mag.py
+    - merged_dataframes.csv
+    outs:
+    - ../Update/new_data.json
+
+  update:
+    wdir: Update
+    cmd: python update_golden.py ../FinalFile/golden new_data ../FinalFile/new_golden
+    deps:
+    - update_golden.py
+    - new_data.json
+
+  validate:
+    cmd: 
+    - great_expectations --v3-api checkpoint run main-val
+    - zip -r report ./great_expectations/uncommitted/validations

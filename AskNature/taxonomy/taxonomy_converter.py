@@ -1,5 +1,5 @@
 import argparse
-from os import sep
+import os
 import pandas as pd
 import convert_labels
 import glob
@@ -131,7 +131,7 @@ def separate_manual_labels(full_dataframe: pd.DataFrame):
     if not manual_df.empty:
         csv_count = len(glob.glob("../../PapersToLabel/*.csv"))
         manual_df.drop("manual_label", inplace = True, axis = 1)
-        manual_df.to_csv(f"papers_to_label_${csv_count}.csv", index=False)
+        manual_df.to_csv(f"./PapersToLabel/papers_to_label_{csv_count}.csv", index=False)
 
     return updated_df
 
