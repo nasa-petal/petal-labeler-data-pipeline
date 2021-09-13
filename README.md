@@ -166,9 +166,9 @@ Great Expectations does not raise any exceptions when a datasource fails a valid
 
 If you have manually corrected the data and would like to re-run the validation locally, then you can use ``great_expectations --v3-api checkpoint run main-val`` to do so. The report will be located in great_expecations\uncommitted\data_docs\local_site; this report will *not* be comitted, meaning even if you do this, you will still need to rerun the revalidate workflow when these changes are pushed to this repo.
 
-## Merging Data into the PeTaL Labeller 
+## Merging Data into the data-collection-and-prep Repo 
 
-This pipeline does not currently generate a PR request automatically, this could be a point of interest to pursue in the future. For now, you will need to make a new branch from the PeTaL Labeler repository and replace the existing golden.json file with your modified one. When you make the PR to merge your branch into main, you will need to attach the validation report within the description so reviewers can download and review it. This should be straight-forward to review and is more of a confirmation rather than a proper review as the validation file should always be a 100% success.
+This pipeline does not currently generate a PR request automatically, this could be a point of interest to pursue in the future. For now, you will need to make a new branch from the data-collection-and-prep repository and replace the existing golden.json file with your modified one. When you make the PR to merge your branch into main, you will need to attach the validation report within the description so reviewers can download and review it. This should be straight-forward to review and is more of a confirmation rather than a proper review as the validation file should always be a 100% success.
 
 
 ## Future Works
@@ -184,5 +184,5 @@ A few features that will either need to be added in, or should be added in are:
         - https://github.com/jlevy/pdiffjson
 
 - Automatic PR
-    - Upon a successful *Pipeline* workflow completion, a PR should be automatically created for the PeTaL Labeler repository.
+    - Upon a successful *Pipeline* workflow completion, a PR should be automatically created for the data-collection-and-prep repository.
     - This would mean the only human intervention needed would either to approve a PR, or to fix faulty data in the case of a failed validation.
