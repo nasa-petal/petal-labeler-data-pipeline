@@ -3,3 +3,4 @@ pandas
 nltk
 bs4
 dvc
+great_expectations

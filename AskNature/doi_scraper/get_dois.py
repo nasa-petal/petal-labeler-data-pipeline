@@ -59,6 +59,7 @@ def merge_dois(algolia_df: pd.DataFrame):
     """
 
     size = algolia_df.shape[0]
+    algolia_df = algolia_df.fillna("")
     for index, row in algolia_df.iterrows():
         print("{:0.2%}".format(index/size))
         if not row.get("doi", False):

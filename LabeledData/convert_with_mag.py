@@ -163,7 +163,7 @@ def convert_to_json(dataframe: pd.DataFrame, mag_res: list, mag_dois: list):
             temp_dict["abstract"] = (row["abstract"] and clean_text("abstract")) or []
             temp_dict["title"] = (row["title"] and clean_text(row["title"])) or []
 
-        temp_dict["petalID"] = index
+        temp_dict["petalID"] = row.get("petalID", "")
         temp_dict["doi"] = row["doi"].upper()
         temp_dict["venue"] = (eval(row["journal"]) if (len(row["journal"]) and row["journal"][0] =="[") else row["journal"]) or []
         temp_dict["level1"] = (row["label_level_1"] and clean_labels(
@@ -172,15 +172,36 @@ def convert_to_json(dataframe: pd.DataFrame, mag_res: list, mag_dois: list):
             eval(row["label_level_2"]))) or []
         temp_dict["level3"] = (row["label_level_3"] and clean_labels(
             eval(row["label_level_3"]))) or []
-        temp_dict["ask_level1"] = row.get("ask_label_level_1", [])
-        temp_dict["ask_level2"] = row.get("ask_label_level_2", [])
-        temp_dict["ask_level3"] = row.get("ask_label_level_3", [])
+        # temp_dict["ask_level1"] = row.get("ask_label_level_1", [])
+        # temp_dict["ask_level2"] = row.get("ask_label_level_2", [])
+        # temp_dict["ask_level3"] = row.get("ask_label_level_3", [])
+        temp_dict["isBiomimicry"] = row.get("isBiomimicry", "undetermined")
         temp_dict["url"] = row["url"]
         temp_dict["fullDocLink"] = row["full_doc_link"]
         temp_dict["isOpenAccess"] = row["is_open_access"]
+        # Stringify lists
+        for key in temp_dict.keys():
+            temp_value = temp_dict[key]
+            if type(temp_value) == list:
+                temp_dict[key] = str(temp_value)
+
         golden_jsons.append(temp_dict)
 
     return golden_jsons
+
+def clean_labels(labels: list):
+    """Reformats labels into more model friendly formats.
+    Args:
+        labels : list
+            A formatted list of biomimicry labels.
+    Returns:
+        list
+            List of properly formatted labels.
+    """
+
+    clean_labels = [re.sub("\s", "_", label).lower()
+                    for label in labels]
+    return clean_labels if clean_labels != "" else []
 
 
 if __name__ == "__main__":

@@ -36,7 +36,21 @@ stages:
 
   convert:
     wdir: LabeledData
-    cmd: python convert_with_mag.py merged_dataframes.csv ../FinalFile/new_golden ${MAG_KEY}
+    cmd: python convert_with_mag.py merged_dataframes.csv ../Update/new_data ${MAG_KEY}
     deps:
     - convert_with_mag.py
     - merged_dataframes.csv
+    outs:
+    - ../Update/new_data.json
+
+  update:
+    wdir: Update
+    cmd: python update_golden.py ../FinalFile/golden new_data ../FinalFile/new_golden
+    deps:
+    - update_golden.py
+    - new_data.json
+
+  validate:
+    cmd: 
+    - python ./FinalFile/ge_validate.py
+    - zip -r ./FinalFile/Reports/report_$(date +"%m-%d-%Y-%H_%M_%S").zip ./great_expectations/uncommitted/data_docs

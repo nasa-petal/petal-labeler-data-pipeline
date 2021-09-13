@@ -138,5 +138,6 @@ if (__name__ == "__main__"):
     asknature_dataframe["journal"] = [""]*size
     asknature_dataframe["full_doc_link"] = [""]*size
     asknature_dataframe["is_open_access"] = [""]*size
+    asknature_dataframe["isBiomimicry"] = ["Y"]*size
 
     asknature_dataframe.to_csv(args.output_file + ".csv", index=False)
