@@ -107,7 +107,7 @@ FinalFile
     - Any AskNature paper which cannot have its taxonomy converted to ours is separated out into a csv file placed here. These papers will need to have their labels manually converted. The resultant csv file will then need to be placed in the *LabeledData* folder.
 - great_expectations
     - This folder contains all of the configuration files for great_expectations. It shouldn't be altered unless you are modifying any existing expectations, or adding in custom components.
-    
+
 ## How to Run
 This pipeline would ideally be run automatically through a service like GitHub Actions and would not need to be manually triggered. However, some cases may call for this, such as testing new stages on your local environment.
 
@@ -164,17 +164,17 @@ Upon extracting the file, navigating to *report_name*\great_expectations\uncommi
 
 ## Handling Validation Failures
 
-This pipeline validates data through the use of Great Expectations. As a result, data not conforming to the defined expectations will fail and this new data will not be eligble for merging into the main repository. If this occurs then either you will need to correct the errors as defined in the validation report, or you will need to revert the changes made by replacing the golden.json file with the golden_backup.json file in the same directory.
+This pipeline validates data through the use of Great Expectations. As a result, data not conforming to the defined expectations will fail and this new data will not be eligble for merging into the main repository. If this occurs then you will need to correct the errors in new_golden as defined in the validation report.
 
 
 ### Correcting Faulty Data
-Great Expectations does not raise any exceptions when a datasource fails a validation test, thus there is no automatic roll-back when this happens. Instead, it always copies the original data into a file called golden_backup.json. You will either need to correct the data from the source file, manually revert the backup file and re-run part of the pipeline using the "merge_only" workflow, or you will need to manually correct the data within the golden.json file and re-run the validation part of the pipeline by triggering the "revalidate" workflow. As this is in a Git repo, you will need to pull the changes locally in order to make your fixes.
+Great Expectations does not raise any exceptions when a datasource fails a validation test, thus there is no automatic roll-back when this happens. Instead, it always creates a file called new_golden.json when it merges the new data with the original. You will either need to correct the data from the source file and re-run part of the pipeline using the "merge_only" workflow, or you will need to manually correct the data within the new_golden.json file and re-run the validation part of the pipeline by triggering the "revalidate" workflow. As this is in a Git repo, you will need to pull the changes locally in order to make your fixes.
 
 If you have manually corrected the data and would like to re-run the validation locally, then you can use ``great_expectations --v3-api checkpoint run main-val`` to do so. The report will be located in great_expecations\uncommitted\data_docs\local_site; this report will *not* be comitted, meaning even if you do this, you will still need to rerun the revalidate workflow when these changes are pushed to this repo.
 
 ## Merging Data into the data-collection-and-prep Repo 
 
-This pipeline does not currently generate a PR request automatically, this could be a point of interest to pursue in the future. For now, you will need to make a new branch from the data-collection-and-prep repository and replace the existing golden.json file with your modified one. When you make the PR to merge your branch into main, you will need to attach the validation report within the description so reviewers can download and review it. This should be straight-forward to review and is more of a confirmation rather than a proper review as the validation file should always be a 100% success.
+This pipeline does not currently generate a PR request automatically, this could be a point of interest to pursue in the future. For now, you will need to make a new branch from the data-collection-and-prep repository and replace the existing golden.json file with your modified one. When you make the PR to merge your branch into main, you will need to attach the validation report within the description so reviewers can download and review it. This should be straight-forward to review and is more of a confirmation rather than a proper review as the validation file should always be a 100% success. Whenever this is done, also be sure to update the golden.json file within FinalFile in this repository.
 
 
 ## Future Works

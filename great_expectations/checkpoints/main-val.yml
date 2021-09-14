@@ -23,7 +23,7 @@ validations:
   - batch_request:
       datasource_name: update
       data_connector_name: default_inferred_data_connector_name
-      data_asset_name: golden.json
+      data_asset_name: new_golden.json
       data_connector_query:
         index: -1
     expectation_suite_name: golden-suite

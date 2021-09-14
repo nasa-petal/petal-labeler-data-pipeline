@@ -76,7 +76,6 @@ if __name__ == "__main__":
 
     new_golden = merge_data(new_file, golden)
         
-    # Try to write json data to a json file, revert to backup if fails
     with open(f"{args.output_name}.json", "w") as golden_file:
         golden_file.write("[\n")
         golden_size = new_golden.shape[0]
