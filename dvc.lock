@@ -31,28 +31,28 @@ stages:
       md5: ef455df4683f404b816e5d777323b3f4
       size: 6506
     - path: AskNature/taxonomy/taxonomy_converter.py
-      md5: 2a6ad1058c40624e3bb1808e73d104f5
-      size: 5820
+      md5: 7f4509d1cdcfdecbc1e3d9852a16fdf5
+      size: 5816
     outs:
     - path: AskNature/taxonomy/converted_paper.csv
-      md5: e03413fa88dc41d56161172256b8d120
+      md5: e4fbd877080380baee005ee54a9f24af
       size: 2900
     - path: LabeledData/converted_paper.csv
-      md5: e03413fa88dc41d56161172256b8d120
+      md5: e4fbd877080380baee005ee54a9f24af
       size: 2900
   combine:
     cmd: python combine_csvs.py
     deps:
     - path: ../AskNature/taxonomy/converted_paper.csv
-      md5: e03413fa88dc41d56161172256b8d120
+      md5: e4fbd877080380baee005ee54a9f24af
       size: 2900
     - path: combine_csvs.py
       md5: 22f637a5d9fabd46de9edacdb9c1c452
       size: 806
     outs:
     - path: merged_dataframes.csv
-      md5: e03413fa88dc41d56161172256b8d120
-      size: 2900
+      md5: 71fcd9dc27618af0990d21615fb93ff2
+      size: 5636
   convert:
     cmd: python convert_with_mag.py merged_dataframes.csv ../Update/new_data d969a6c4bef34765ae7c5f0e75dd624e
     deps:
