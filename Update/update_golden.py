@@ -40,9 +40,10 @@ def merge_data(new_json: pd.DataFrame, golden: pd.DataFrame):
 
     df_columns = golden.columns
     new_rows = []
+    petalIDList = golden["petalID"].to_list()
     for index, row in new_json.iterrows():
         petalID = row.get('petalID', None)
-        if petalID in golden["petalID"]:
+        if petalID in petalIDList:
             # Update existing data
             # get index
             indices = golden[golden["petalID"] == petalID].index.values
