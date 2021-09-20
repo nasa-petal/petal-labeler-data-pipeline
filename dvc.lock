@@ -35,24 +35,24 @@ stages:
       size: 5816
     outs:
     - path: AskNature/taxonomy/converted_paper.csv
-      md5: afb532e7fe27ac76e4eacca1314c0407
+      md5: 6c68722003874bd981d6e99a3a6157ac
       size: 2900
     - path: LabeledData/converted_paper.csv
-      md5: afb532e7fe27ac76e4eacca1314c0407
+      md5: 6c68722003874bd981d6e99a3a6157ac
       size: 2900
   combine:
     cmd: python combine_csvs.py
     deps:
     - path: ../AskNature/taxonomy/converted_paper.csv
-      md5: afb532e7fe27ac76e4eacca1314c0407
+      md5: 6c68722003874bd981d6e99a3a6157ac
       size: 2900
     - path: combine_csvs.py
       md5: 22f637a5d9fabd46de9edacdb9c1c452
       size: 806
     outs:
     - path: merged_dataframes.csv
-      md5: c06956a549481eb1d58e138c36304b67
-      size: 5195
+      md5: 6c68722003874bd981d6e99a3a6157ac
+      size: 2900
   convert:
     cmd: python convert_with_mag.py merged_dataframes.csv ../Update/new_data d969a6c4bef34765ae7c5f0e75dd624e
     deps:
@@ -60,21 +60,21 @@ stages:
       md5: 6b540770eaa22c890c1c81d1481baac9
       size: 8051
     - path: merged_dataframes.csv
-      md5: e03413fa88dc41d56161172256b8d120
+      md5: 6c68722003874bd981d6e99a3a6157ac
       size: 2900
     outs:
     - path: ../Update/new_data.json
-      md5: ccdbcd1d8b0e190ee9a16a41100b76eb
+      md5: dc12e1ca865df3cc4846d8652cbb8d77
       size: 3698
   update:
     cmd: python update_golden.py ../FinalFile/golden new_data ../FinalFile/new_golden
     deps:
     - path: new_data.json
-      md5: ccdbcd1d8b0e190ee9a16a41100b76eb
+      md5: dc12e1ca865df3cc4846d8652cbb8d77
       size: 3698
     - path: update_golden.py
-      md5: 08960bc6dda98a9cfaf5d80f7052b8a8
-      size: 3104
+      md5: 169a491a80ccde0a2e2689fd2edbeccc
+      size: 3073
   validate:
     cmd:
     - python ./FinalFile/ge_validate.py
