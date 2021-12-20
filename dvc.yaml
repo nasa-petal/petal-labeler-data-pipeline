@@ -31,7 +31,6 @@ stages:
     deps:
     - combine_csvs.py
     - ../AskNature/taxonomy/converted_paper.csv
-    - ../mturk/test.csv
     outs:
     - merged_dataframes.csv
 
