@@ -25,11 +25,6 @@ stages:
     - AskNature/taxonomy/converted_paper.csv
     - LabeledData/converted_paper.csv
 
-  mturk:
-    cmd: python mturk/dummy.py
-    outs:
-      - mturk/test.csv
-
   combine:
     wdir: LabeledData
     cmd: python combine_csvs.py
