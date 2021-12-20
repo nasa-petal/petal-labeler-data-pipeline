@@ -29,9 +29,10 @@ jobs:
           python -m nltk.downloader stopwords
           python -m nltk.downloader punkt
       - name: Setup Params
-        run: echo "ALGOLIA_APP_ID: ${ALGOLIA_APP_ID}\n" >> params.yaml
-        run: echo "ALGOLIA_APP_KEY: ${ALGOLIA_APP_KEY}\n" >> params.yaml
-        run: echo "MAG_KEY: ${MAG_KEY}" >> params.yaml
+        run: |
+          echo "ALGOLIA_APP_ID: ${ALGOLIA_APP_ID}\n" >> params.yaml
+          echo "ALGOLIA_APP_KEY: ${ALGOLIA_APP_KEY}\n" >> params.yaml
+          echo "MAG_KEY: ${MAG_KEY}" >> params.yaml
       - name: Pull AskNature Papers
         run: dvc repro -f pullAskNature
       
