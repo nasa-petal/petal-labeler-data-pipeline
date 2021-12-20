@@ -2,9 +2,9 @@ name: Pipeline
 
 # Controls when the workflow will run
 on:
-  # Triggers the DVC pipeline once a week at 10 EST or 11 EDT
+  # Triggers the DVC pipeline once a week at midnight
   schedule:
-    - cron: "0 15 * 1 *"
+    - cron: "0 0 */7 * *"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -28,12 +28,18 @@ jobs:
           pip install -r requirements.txt
           python -m nltk.downloader stopwords
           python -m nltk.downloader punkt
-      
+      - name: Setup Params
+        run: echo "ALGOLIA_APP_ID: ${ALGOLIA_APP_ID}\n" >> params.yaml
+        run: echo "ALGOLIA_APP_KEY: ${ALGOLIA_APP_KEY}\n" >> params.yaml
+        run: echo "MAG_KEY: ${MAG_KEY}" >> params.yaml
       - name: Pull AskNature Papers
         run: dvc repro -f pullAskNature
       
       - name: Run DVC Pipeline
         run: dvc repro
+
+      - name: Teardown
+        run: rm params.yaml
 
       # Push Updates to Repo
       - name: Git Push
