@@ -30,16 +30,16 @@ jobs:
           python -m nltk.downloader punkt
       - name: Setup Params
         run: |
-          echo "ALGOLIA_APP_ID: ${ALGOLIA_APP_ID}\n" >> params.yaml
-          echo "ALGOLIA_APP_KEY: ${ALGOLIA_APP_KEY}\n" >> params.yaml
-          echo "MAG_KEY: ${MAG_KEY}" >> params.yaml
+          echo "ALGOLIA_APP_ID: ${{ALGOLIA_APP_ID}}\n" >> params.yaml
+          echo "ALGOLIA_APP_KEY: ${{ALGOLIA_APP_KEY}}\n" >> params.yaml
+          echo "MAG_KEY: ${{MAG_KEY}}" >> params.yaml
       - name: Pull AskNature Papers
         run: dvc repro -f pullAskNature
       
       - name: Run DVC Pipeline
         run: dvc repro
 
-      - name: Teardown
+      - name: Remove Params
         run: rm params.yaml
 
       # Push Updates to Repo
