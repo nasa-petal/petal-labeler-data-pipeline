@@ -45,7 +45,7 @@ stages:
 
   update:
     wdir: Update
-    cmd: python update_golden.py ../FinalFile/golden new_data ../FinalFile/new_golden
+    cmd: python update_golden.py https://raw.githubusercontent.com/nasa-petal/data-collection-and-prep/main/golden new_data ../FinalFile/new_golden
     deps:
     - update_golden.py
     - new_data.json

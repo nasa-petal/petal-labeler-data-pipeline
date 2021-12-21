@@ -52,6 +52,7 @@ def merge_data(new_json: pd.DataFrame, golden: pd.DataFrame):
             if len(indices):
                 found_index = indices[0]
                 for series_key in row.keys():
+                    print(row[series_key])
                     if series_key in df_columns and len(row[series_key]):
                         golden.at[found_index, series_key] = row[series_key]
 

@@ -41,7 +41,7 @@ jobs:
         run: dvc repro -f pullAskNature
       
       - name: Run DVC Pipeline
-        run: dvc repro
+        run: dvc repro -f
 
       - name: Remove Params
         run: rm params.yaml
