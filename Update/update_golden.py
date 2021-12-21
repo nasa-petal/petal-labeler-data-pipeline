@@ -12,7 +12,9 @@ def get_arg_parser():
     """
 
     def json_path(string):
-        if os.path.isfile(string + ".json"):
+        if str(string).startswith('https://raw.githubusercontent.com/nasa-petal/'):
+            return string
+        elif os.path.isfile(string + ".json"):
             return string
         else:
             raise NotADirectoryError(string)
