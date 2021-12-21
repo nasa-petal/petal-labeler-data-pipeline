@@ -27,9 +27,9 @@ stages:
 
   combine:
     wdir: LabeledData
-    cmd: python combine_csvs.py
+    cmd: python combine_csvs_and_jsons.py
     deps:
-    - combine_csvs.py
+    - combine_csvs_and_jsons.py
     - ../AskNature/taxonomy/converted_paper.csv
     outs:
     - merged_dataframes.csv
@@ -45,7 +45,7 @@ stages:
 
   update:
     wdir: Update
-    cmd: python update_golden.py ../FinalFile/golden new_data ../FinalFile/new_golden
+    cmd: python update_golden.py https://raw.githubusercontent.com/nasa-petal/data-collection-and-prep/main/golden new_data ../FinalFile/new_golden
     deps:
     - update_golden.py
     - new_data.json
