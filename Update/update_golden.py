@@ -52,10 +52,13 @@ def merge_data(new_json: pd.DataFrame, golden: pd.DataFrame):
             if len(indices):
                 found_index = indices[0]
                 for series_key in row.keys():
-                    print(row[series_key])
-                    if series_key in df_columns and len(row[series_key]):
+                    if series_key in df_columns:
                         golden.at[found_index, series_key] = row[series_key]
-
+                    else: # new_json has added columns.
+                        #create the column
+                        golden[series_key] = None
+                        #update the column in the current row.
+                        golden.at[found_index, series_key] = row[series_key] 
         else:
             # Add new row 
             new_rows.append(row)
