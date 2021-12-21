@@ -22,7 +22,9 @@
           "url",
           "isBiomimicry",
           "fullDocLink",
-          "isOpenAccess"
+          "isOpenAccess",
+          "abstract_full",
+          "title_full"
         ]
       },
       "meta": {}
