@@ -36,9 +36,9 @@ stages:
 
   convert:
     wdir: LabeledData
-    cmd: python convert_with_mag.py merged_dataframes.csv ../Update/new_data ${MAG_KEY}
+    cmd: python convert_with_api.py merged_dataframes.csv ../Update/new_data
     deps:
-    - convert_with_mag.py
+    - convert_with_api.py
     - merged_dataframes.csv
     outs:
     - ../Update/new_data.json

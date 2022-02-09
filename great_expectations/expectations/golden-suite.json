@@ -7,24 +7,24 @@
       "kwargs": {
         "column_list": [
           "paper",
-          "mag",
-          "venue_mag",
-          "author",
-          "reference",
+          "mesh_terms",
+          "venue_ids",
+          "venue_names",
+          "author_ids",
+          "author_names",
+          "reference_ids",
           "title",
           "abstract",
+          "isOpenAccess",
+          "fullDocLink",
           "petalID",
           "doi",
-          "venue",
           "level1",
           "level2",
           "level3",
-          "url",
           "isBiomimicry",
-          "fullDocLink",
-          "isOpenAccess",
-          "abstract_full",
-          "title_full"
+          "url",
+          "mag_terms"
         ]
       },
       "meta": {}
@@ -146,65 +146,29 @@
       "meta": {}
     },
     {
-      "expectation_type": "expect_column_values_to_be_in_type_list",
+      "expectation_type": "expect_type_list",
       "kwargs": {
         "column": "level1",
-        "type_list": [
-          "CHAR",
-          "NCHAR",
-          "VARCHAR",
-          "NVARCHAR",
-          "TEXT",
-          "NTEXT",
-          "STRING",
-          "StringType",
-          "string",
-          "str",
-          "object",
-          "dtype('O')"
-        ]
+        "max_value": 1,
+        "min_value": 1
       },
       "meta": {}
     },
     {
-      "expectation_type": "expect_column_values_to_be_in_type_list",
+      "expectation_type": "expect_type_list",
       "kwargs": {
         "column": "level2",
-        "type_list": [
-          "CHAR",
-          "NCHAR",
-          "VARCHAR",
-          "NVARCHAR",
-          "TEXT",
-          "NTEXT",
-          "STRING",
-          "StringType",
-          "string",
-          "str",
-          "object",
-          "dtype('O')"
-        ]
+        "max_value": 1,
+        "min_value": 1
       },
       "meta": {}
     },
     {
-      "expectation_type": "expect_column_values_to_be_in_type_list",
+      "expectation_type": "expect_type_list",
       "kwargs": {
         "column": "level3",
-        "type_list": [
-          "CHAR",
-          "NCHAR",
-          "VARCHAR",
-          "NVARCHAR",
-          "TEXT",
-          "NTEXT",
-          "STRING",
-          "StringType",
-          "string",
-          "str",
-          "object",
-          "dtype('O')"
-        ]
+        "max_value": 1,
+        "min_value": 1
       },
       "meta": {}
     },
