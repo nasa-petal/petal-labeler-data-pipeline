@@ -4,7 +4,7 @@ import nltk
 import string
 import json
 import requests
-import math
+import traceback
 import os
 import argparse
 
@@ -203,23 +203,21 @@ def convert_to_json(dataframe: pd.DataFrame, api_res: list, api_dois: list):
                 temp_dict["abstract"] = row["abstract"]
                 temp_dict["title"] = row["title"]
 
-            if (row.get("petalID", False)):
+            if (isinstance(row["petalID"],(int,float))):
                 temp_dict["petalID"] = int(row["petalID"])
             else:
                 temp_dict["petalID"] = ""
 
             temp_dict["doi"] = row["doi"].upper()
 
-            if (len(row["journal"]) and row["journal"][0] =="["):
+            if (len(row["venue_names"]) and row["venue_names"][0] =="["):
                 old_ven_names = []
                 
-                for venue in eval(row["journal"]):
+                for venue in eval(row["venue_names"]):
                     if venue not in temp_dict["venue_names"]:
                         old_ven_names.append(venue)
                 
                 temp_dict["venue_names"] += old_ven_names
-            else:
-                temp_dict["venue_names"] += row["journal"] or []
                 
             temp_dict["level1"] = (row["label_level_1"] and clean_labels(
                 eval(row["label_level_1"]))) or []
@@ -240,15 +238,10 @@ def convert_to_json(dataframe: pd.DataFrame, api_res: list, api_dois: list):
             else:
                 temp_dict["mag_terms"] = []
 
-            # Stringify lists
-            # for key in temp_dict.keys():
-            #     temp_value = temp_dict[key]
-            #     if type(temp_value) == list:
-            #         temp_dict[key] = str(temp_value)
 
             golden_jsons.append(temp_dict)
         except Exception as error:
-            print(f"ERROR: {error}")
+            print(traceback.format_exc())
             print(row["doi"])
 
     return golden_jsons
@@ -271,8 +264,8 @@ def clean_labels(labels: list):
 if __name__ == "__main__":
     args = get_arg_parser()
     dataframe = pd.read_csv(args.csv_path, encoding="utf8")
-    dataframe = dataframe.fillna("")
-    dataframe = dataframe.sort_values("doi", axis=0, ascending=False)
+    dataframe = dataframe.dropna(subset="url").fillna("")
+    dataframe = dataframe.sort_values("petalID", axis=0, ascending=True)
     (api_res, api_dois) = get_api_data(dataframe)
     golden_jsons = convert_to_json(dataframe, api_res, api_dois)
     
