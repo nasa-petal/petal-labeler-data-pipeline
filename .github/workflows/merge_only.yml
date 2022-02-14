@@ -27,13 +27,11 @@ jobs:
       
       - name: Setup Params
         env:
-          ALGOLIA_APP_ID: "error"
-          ALGOLIA_APP_KEY: "error"
-          MAG_KEY: "error"
+          ALGOLIA_APP_ID: "ALGOLIA_APP_ID: 'error'"
+          ALGOLIA_APP_KEY: "ALGOLIA_APP_KEY: 'error'"
         run: |
           echo "${ALGOLIA_APP_ID}" >> params.yaml
           echo "${ALGOLIA_APP_KEY}" >> params.yaml
-          echo "${MAG_KEY}" >> params.yaml
           
       - name: Run DVC Pipeline
         run: dvc repro -f --downstream combine
