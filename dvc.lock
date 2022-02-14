@@ -43,16 +43,13 @@ stages:
   combine:
     cmd: python combine_csvs_and_jsons.py
     deps:
-    - path: ../AskNature/taxonomy/converted_paper.csv
-      md5: 6381677f2503f7b3530b71139a536c20
-      size: 3331
     - path: combine_csvs_and_jsons.py
-      md5: 22a689386bfe0cdbe5a062fd2516d1e3
-      size: 1059
+      md5: f6a935efe7e0d8f33177ffef45d5c48f
+      size: 1019
     outs:
     - path: merged_dataframes.csv
-      md5: 645a4a040040a4492e549dff826d4912
-      size: 828008
+      md5: 1f5b0b3047f1a0d657fca11a4310b55a
+      size: 205
   convert:
     cmd: python convert_with_api.py merged_dataframes.csv ../Update/new_data
     deps:
