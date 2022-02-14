@@ -3,36 +3,33 @@ stages:
   combine:
     cmd: python combine_csvs_and_jsons.py
     deps:
-    - path: ../AskNature/taxonomy/converted_paper.csv
-      md5: 6381677f2503f7b3530b71139a536c20
-      size: 3331
     - path: combine_csvs_and_jsons.py
-      md5: 22a689386bfe0cdbe5a062fd2516d1e3
-      size: 1059
+      md5: f6a935efe7e0d8f33177ffef45d5c48f
+      size: 1019
     outs:
     - path: merged_dataframes.csv
       md5: e61e9e0ce59c715d0886d62fa798c1b0
-      size: 266
+      size: 264
   convert:
     cmd: python convert_with_api.py merged_dataframes.csv ../Update/new_data
     deps:
     - path: convert_with_api.py
-      md5: 6aeb04f1064cd3d07a186a6d7ef1745b
-      size: 10661
+      md5: fd15c13c4cf6719bbc9e9eb29767e258
+      size: 10286
     - path: merged_dataframes.csv
       md5: e61e9e0ce59c715d0886d62fa798c1b0
-      size: 266
+      size: 264
     outs:
     - path: ../Update/new_data.json
-      md5: 6dc1e512ee4027a1ec1a0f77f9888aa6
-      size: 2951
+      md5: 0ceee1d2501d9dd883aeac510a44af5d
+      size: 2949
   update:
     cmd: python update_golden.py https://raw.githubusercontent.com/nasa-petal/data-collection-and-prep/main/golden
       new_data ../FinalFile/new_golden
     deps:
     - path: new_data.json
-      md5: 6dc1e512ee4027a1ec1a0f77f9888aa6
-      size: 2951
+      md5: 0ceee1d2501d9dd883aeac510a44af5d
+      size: 2949
     - path: update_golden.py
       md5: 8310b9ac0745597205c9a66c29a10242
-      size: 3556
+      size: 3460
