@@ -36,7 +36,7 @@ jobs:
           echo "${MAG_KEY}" >> params.yaml
           
       - name: Run DVC Pipeline
-        run: dvc repro --downstream combine
+        run: dvc repro -f --downstream combine
 
       # Push Updates to Repo
       - name: Git Push
