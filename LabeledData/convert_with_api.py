@@ -87,7 +87,7 @@ def get_api_data(dataframe: pd.DataFrame):
         print("Progress: {0:0.2%}".format(i/total_size))
 
         r = requests.get(url + paper_dois[i])
-    
+
         if (r.status_code == 200):
             temp_response = json.loads(r.text)
             api_res.append(temp_response)
@@ -266,6 +266,8 @@ if __name__ == "__main__":
     dataframe = pd.read_csv(args.csv_path, encoding="utf8")
     dataframe = dataframe.dropna(subset="url").fillna("")
     dataframe = dataframe.sort_values("petalID", axis=0, ascending=True)
+    dataframe["doi"] = dataframe["doi"] \
+        .apply(lambda doi: re.search(r'\b(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![\"&\'<>])\S)+)\b', doi).group().upper())
     (api_res, api_dois) = get_api_data(dataframe)
     golden_jsons = convert_to_json(dataframe, api_res, api_dois)
     
