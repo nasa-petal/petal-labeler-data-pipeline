@@ -30,7 +30,6 @@ stages:
     cmd: python combine_csvs_and_jsons.py
     deps:
     - combine_csvs_and_jsons.py
-    - ../AskNature/taxonomy/converted_paper.csv
     outs:
     - merged_dataframes.csv
 
