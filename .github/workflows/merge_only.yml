@@ -26,7 +26,7 @@ jobs:
           python -m nltk.downloader punkt
       
       - name: Run DVC Pipeline
-        run: dvc repro -f combine
+        run: dvc repro --downstream combine
 
       # Push Updates to Repo
       - name: Git Push
