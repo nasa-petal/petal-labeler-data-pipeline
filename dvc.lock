@@ -4,78 +4,77 @@ stages:
     cmd: python algolia-downloader.py ask_nature_paper KK25DU67ZI bbd06cdca060a9aff6e5f52cf0ecab21
     deps:
     - path: algolia-downloader.py
-      md5: 5d107ec59dce64b9a76903ca3848e8db
-      size: 5542
+      md5: 9c7a89ad5014acae2a15c7dc0ccb0832
+      size: 5689
     outs:
     - path: ask_nature_paper.csv
-      md5: a7c45490d705c42af424fe52e9fa909f
-      size: 5557
+      md5: 4c3817538f67f06035ac6f49c32d3596
+      size: 5580
   getDOIs:
     cmd: python get_dois.py ../algolia_downloader/ask_nature_paper.csv
     deps:
     - path: ../algolia_downloader/ask_nature_paper.csv
-      md5: a7c45490d705c42af424fe52e9fa909f
-      size: 5557
+      md5: 4c3817538f67f06035ac6f49c32d3596
+      size: 5580
     - path: get_dois.py
       md5: 760924a4e6b42ffb2d0f8156134edf31
-      size: 2827
+      size: 2921
     outs:
     - path: doi_scraped_papers.csv
-      md5: a7c45490d705c42af424fe52e9fa909f
-      size: 5557
+      md5: 4c3817538f67f06035ac6f49c32d3596
+      size: 5580
   convertAskNatureTaxonomy:
     cmd: python AskNature/taxonomy/taxonomy_converter.py AskNature/doi_scraper/doi_scraped_papers.csv
       AskNature/taxonomy/function_map.csv LabeledData/converted_paper
     deps:
     - path: AskNature/doi_scraper/doi_scraped_papers.csv
-      md5: a7c45490d705c42af424fe52e9fa909f
-      size: 5557
+      md5: 4c3817538f67f06035ac6f49c32d3596
+      size: 5580
     - path: AskNature/taxonomy/taxonomy_converter.py
       md5: 7f4509d1cdcfdecbc1e3d9852a16fdf5
-      size: 5816
+      size: 5962
     outs:
     - path: AskNature/taxonomy/converted_paper.csv
-      md5: ecf72097e8c8b48d677c89f3fcbf7236
-      size: 3317
+      md5: 6381677f2503f7b3530b71139a536c20
+      size: 3331
     - path: LabeledData/converted_paper.csv
-      md5: ecf72097e8c8b48d677c89f3fcbf7236
-      size: 3317
+      md5: 6381677f2503f7b3530b71139a536c20
+      size: 3331
   combine:
     cmd: python combine_csvs_and_jsons.py
     deps:
     - path: ../AskNature/taxonomy/converted_paper.csv
-      md5: ecf72097e8c8b48d677c89f3fcbf7236
-      size: 3317
+      md5: 6381677f2503f7b3530b71139a536c20
+      size: 3331
     - path: combine_csvs_and_jsons.py
-      md5: 688a645879688c8811017e4dec9fcc68
-      size: 1002
+      md5: 22a689386bfe0cdbe5a062fd2516d1e3
+      size: 1059
     outs:
     - path: merged_dataframes.csv
-      md5: ecf72097e8c8b48d677c89f3fcbf7236
-      size: 3317
+      md5: 645a4a040040a4492e549dff826d4912
+      size: 828008
   convert:
-    cmd: python convert_with_mag.py merged_dataframes.csv ../Update/new_data d969a6c4bef34765ae7c5f0e75dd624e
+    cmd: python convert_with_api.py merged_dataframes.csv ../Update/new_data
     deps:
-    - path: convert_with_mag.py
-      md5: 6b540770eaa22c890c1c81d1481baac9
-      size: 8051
+    - path: convert_with_api.py
+      md5: a044f83ab7d0a6ef0497fced3e02f6db
+      size: 10632
     - path: merged_dataframes.csv
-      md5: ecf72097e8c8b48d677c89f3fcbf7236
-      size: 3317
+      md5: 9febb61548cc66c0fb87c63a21ce1515
+      size: 819238
     outs:
     - path: ../Update/new_data.json
-      md5: 5265e2fccc196ec44a081c2c36009815
-      size: 4407
+      md5: 18e2da136e2e1022855506ffbb8c2630
+      size: 4352437
   update:
-    cmd: python update_golden.py https://raw.githubusercontent.com/nasa-petal/data-collection-and-prep/main/golden
-      new_data ../FinalFile/new_golden
+    cmd: python update_golden.py ../FinalFile/golden new_data ../FinalFile/new_golden
     deps:
     - path: new_data.json
-      md5: 5265e2fccc196ec44a081c2c36009815
-      size: 4407
+      md5: a70ee7632dca658be84a56758cc096c3
+      size: 27886826
     - path: update_golden.py
       md5: 6296d6779d4c4dca2321ae6519c905ea
-      size: 3449
+      size: 3545
   validate:
     cmd:
     - python ./FinalFile/ge_validate.py

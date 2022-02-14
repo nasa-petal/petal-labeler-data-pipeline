@@ -21,7 +21,7 @@ if __name__ == "__main__":
         os.remove("merged_dataframes.csv")
     csv_paths = glob.glob("*.csv")
     print("Files merged: ", csv_paths)
-    dataframes = [pd.read_csv(path) for path in csv_paths]
+    dataframes = [pd.read_csv(path, encoding="utf8") for path in csv_paths]
     json_paths = glob.glob("*.json")
     print("Files merged: ", json_paths)
     dataframes.extend([pd.read_json(path) for path in json_paths])

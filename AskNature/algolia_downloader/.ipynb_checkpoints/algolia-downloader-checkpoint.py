@@ -135,7 +135,7 @@ if (__name__ == "__main__"):
     size = asknature_dataframe.shape[0]
     asknature_dataframe["title"] = [""]*size
     asknature_dataframe["abstract"] = [""]*size
-    asknature_dataframe["journal"] = [""]*size
+    asknature_dataframe["venue_names"] = [""]*size
     asknature_dataframe["full_doc_link"] = [""]*size
     asknature_dataframe["is_open_access"] = [""]*size
     asknature_dataframe["isBiomimicry"] = ["Y"]*size

@@ -69,7 +69,7 @@ def merge_data(new_json: pd.DataFrame, golden: pd.DataFrame):
             current_index += 1
         golden = pd.concat([golden, pd.DataFrame(new_rows)], ignore_index=True)
         
-    return golden
+    return golden.fillna("")
 
 
 if __name__ == "__main__":

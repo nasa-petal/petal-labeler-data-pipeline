@@ -63,7 +63,7 @@ AskNature
 
 LabeledData
 ├─ combine_csvs.py -> combine
-└─ convert_with_mag.py -> convert
+└─ convert_with_api.py -> convert
 
 Update
 └─ update_golden.py -> update
@@ -90,7 +90,7 @@ FinalFile
     - Once triggered, this stage will simply combine all of the CSVs of labeled papers within the 'LabeledData' directory, remove them and produce a new csv containing the merged data.
 
 - convert
-    - When this stage is run, it will pass all of the papers from the previously mentioned merged dataset through the MAG API. This will fill in any of the missing fields where possible.
+    - When this stage is run, it will pass all of the papers from the previously mentioned merged dataset through the OpenAlex API. This will fill in any of the missing fields where possible.
 
     - Once this is complete, the stage finaly converts this data into a JSON file following the schema utilized within the golden.json file. 
 
