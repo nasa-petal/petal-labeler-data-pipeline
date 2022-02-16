@@ -195,7 +195,7 @@ def convert_to_json(dataframe: pd.DataFrame, api_res: list, api_dois: list):
                     temp_dict["abstract"] = ""
 
                 # Open Access
-                temp_dict["isOpenAccess"] = api_paper["open_access"]["is_oa"]
+                temp_dict["isOpenAccess"] = bool(api_paper["open_access"]["is_oa"])
                 # Full Doc Link
                 temp_dict["fullDocLink"] = api_paper["open_access"]["oa_url"]
                 
