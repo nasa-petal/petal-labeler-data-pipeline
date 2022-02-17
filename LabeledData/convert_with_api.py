@@ -129,15 +129,10 @@ def convert_to_json(dataframe: pd.DataFrame, api_res: list, api_dois: list):
 
             if (api_index >= 0):
                 temp_dict["paper"] = extract_oa_id(api_paper["id"])
+                
                 # Mesh Terms
                 if (len(api_paper["mesh"])):
-
-                    # Safely evaluate as object if stringified
-                    if (isinstance(api_paper["mesh"][0], str)):
-                        temp_dict["mesh_terms"] = [ast.literal_eval(mesh)["descriptor_name"] for mesh
-                        in api_paper["mesh"]]    
-                    else:
-                        temp_dict["mesh_terms"] = [mesh["descriptor_name"] for mesh
+                    temp_dict["mesh_terms"] = [mesh["descriptor_name"] for mesh
                         in api_paper["mesh"]]
                 else:
                     temp_dict["mesh_terms"] = []
