@@ -8,8 +8,8 @@ stages:
       size: 1019
     outs:
     - path: merged_dataframes.csv
-      md5: e61e9e0ce59c715d0886d62fa798c1b0
-      size: 264
+      md5: 4078e8a9d0af92e9de07abe2dcb3d706
+      size: 259
   convert:
     cmd: python convert_with_api.py merged_dataframes.csv ../Update/new_data
     deps:
@@ -17,19 +17,19 @@ stages:
       md5: fd15c13c4cf6719bbc9e9eb29767e258
       size: 10286
     - path: merged_dataframes.csv
-      md5: e61e9e0ce59c715d0886d62fa798c1b0
-      size: 264
+      md5: 4078e8a9d0af92e9de07abe2dcb3d706
+      size: 259
     outs:
     - path: ../Update/new_data.json
-      md5: 0ceee1d2501d9dd883aeac510a44af5d
-      size: 2949
+      md5: 3bc0aea0f985ef70e72d1846e4e51053
+      size: 2080
   update:
     cmd: python update_golden.py https://raw.githubusercontent.com/nasa-petal/data-collection-and-prep/main/golden
       new_data ../FinalFile/new_golden
     deps:
     - path: new_data.json
-      md5: 0ceee1d2501d9dd883aeac510a44af5d
-      size: 2949
+      md5: 3bc0aea0f985ef70e72d1846e4e51053
+      size: 2080
     - path: update_golden.py
       md5: 8310b9ac0745597205c9a66c29a10242
       size: 3460
