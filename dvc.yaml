@@ -52,4 +52,4 @@ stages:
   validate:
     cmd: 
     - python ./FinalFile/ge_validate.py
-    - zip -r ./FinalFile/Reports/report_$(date +"%m-%d-%Y-%H_%M_%S").zip ./great_expectations/uncommitted/data_docs
+    - zip -r ./FinalFile/Reports/report_$(date +"%Y-%m-%dT%H:%M:%S-05:00").zip ./great_expectations/uncommitted/data_docs
