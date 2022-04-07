@@ -232,6 +232,9 @@ def convert_to_json(dataframe: pd.DataFrame, api_res: list, api_dois: list):
             # temp_dict["ask_level3"] = row.get("ask_label_level_3", [])
             temp_dict["isBiomimicry"] = row.get("isBiomimicry", "undetermined")
             temp_dict["url"] = row["url"]
+            temp_dict["species"] = row["species"]
+            temp_dict["absolute_relevancy"] = row["absolute_relevancy"]
+            temp_dict["relative_relevancy"] = row["relative_relevancy"]
             if (row.get("mag_terms", False)):
                 if (type(row["mag_terms"]) == str):
                     temp_dict["mag_terms"] = eval(row["mag_terms"])
