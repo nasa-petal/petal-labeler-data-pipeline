@@ -24,6 +24,9 @@
           "level3",
           "isBiomimicry",
           "url",
+          "species",
+          "absolute_relevancy",
+          "relative_relevancy",
           "mag_terms"
         ]
       },
@@ -167,6 +170,33 @@
       "expectation_type": "expect_type_list",
       "kwargs": {
         "column": "level3",
+        "max_value": 1,
+        "min_value": 1
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_type_list",
+      "kwargs": {
+        "column": "species",
+        "max_value": 1,
+        "min_value": 1
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_type_list",
+      "kwargs": {
+        "column": "absolute_relevancy",
+        "max_value": 1,
+        "min_value": 1
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_type_list",
+      "kwargs": {
+        "column": "relative_relevancy",
         "max_value": 1,
         "min_value": 1
       },
