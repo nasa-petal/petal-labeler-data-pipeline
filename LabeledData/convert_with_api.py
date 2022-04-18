@@ -60,6 +60,8 @@ def build_abstract(inverted_ind:dict):
     for word in inverted_ind.keys():
         for index in inverted_ind[word]:
             abstract_list[index] = word
+    full_abstract = " ".join(abstract_list)
+    full_abstract = re.sub(" -(.*)- ", " ", full_abstract)
 
     return " ".join(abstract_list)
 
