@@ -49,7 +49,7 @@ class ColumnBadListProportionCount(ColumnAggregateMetricProvider):
     metric_name = "column_values.list_in_set.custom.unexpected_count"
 
     @column_aggregate_value(engine=PandasExecutionEngine)
-    def _pandas(cls, column, **kwargs):[]
+    def _pandas(cls, column, **kwargs):
         "Pandas Lists with Bad Value Count"
         bad_lists = column[~column.apply(lambda el: _VALUE_SET.issuperset(el))]
         return bad_lists.shape[0]
@@ -57,7 +57,6 @@ class ColumnBadListProportionCount(ColumnAggregateMetricProvider):
 
 class ColumnBadListValues(ColumnAggregateMetricProvider):
     metric_name = "column_values.list_in_set.custom.unexpected_values"
-
     @column_aggregate_value(engine=PandasExecutionEngine)
     def _pandas(cls, column, **kwargs):
         "Pandas Non-List Values"
