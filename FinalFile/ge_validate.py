@@ -6,6 +6,9 @@ spec_unique.loader.exec_module(expect_non_empty_unique)
 spec_list = importlib.util.spec_from_file_location("expect_type_list", "./great_expectations/plugins/custom_modules/expect_type_list.py")
 expect_type_list = importlib.util.module_from_spec(spec_list)
 spec_list.loader.exec_module(expect_type_list)
+spec_list = importlib.util.spec_from_file_location("expect_column_list_to_be_in_set", "./great_expectations/plugins/custom_modules/expect_column_list_to_be_in_set.py")
+expect_column_list_to_be_in_set = importlib.util.module_from_spec(spec_list)
+spec_list.loader.exec_module(expect_column_list_to_be_in_set)
 
 """
 The actual Great Expectations cli commands cannot handle custom expectations. So this file exists just to import these
