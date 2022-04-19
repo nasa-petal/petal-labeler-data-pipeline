@@ -30,32 +30,44 @@ from great_expectations.render.util import (
 )
 
 from typing import Any, Dict, List, Optional, Union
-
+_VALUE_SET = set([
+          "attach",
+          "modify_color/camouflage",
+          "modify_size/shape/material_properties",
+          "modify/convert_energy",
+          "assemble/break_down_structure",
+          "move_on/through_solids_liquids_gases",
+          "protect_from_living/non-living_threats",
+          "manage_mechanical_forces",
+          "sustain_ecological_community",
+          "chemically_assemble/break_down",
+          "sense_send_process_information",
+          "manipulate_solids_liquids_gases_energy"
+        ])
 
 class ColumnBadListProportionCount(ColumnAggregateMetricProvider):
     metric_name = "column_values.list_in_set.custom.unexpected_count"
 
     @column_aggregate_value(engine=PandasExecutionEngine)
-    def _pandas(cls, column, value_set):
+    def _pandas(cls, column, **kwargs):[]
         "Pandas Lists with Bad Value Count"
-        column_zero = column[~column.apply(lambda el: len(el) >= 1)]
-        bad_lists = column[~column.apply(lambda el: all([value in value_set for value in el]))]
-        return bad_lists.shape[0] + column_zero.shape[0]
+        bad_lists = column[~column.apply(lambda el: _VALUE_SET.issuperset(el))]
+        return bad_lists.shape[0]
 
 
 class ColumnBadListValues(ColumnAggregateMetricProvider):
     metric_name = "column_values.list_in_set.custom.unexpected_values"
 
     @column_aggregate_value(engine=PandasExecutionEngine)
-    def _pandas(cls, column, value_set):
+    def _pandas(cls, column, **kwargs):
         "Pandas Non-List Values"
-        bad_lists = column[~column.apply(lambda el: all([value in value_set for value in el]))] \
+        bad_lists = column[~column.apply(lambda el: _VALUE_SET.issuperset(el))] \
             .apply(lambda el: str(el))
         return bad_lists.to_list()
 
 class ExpectColumnListToBeInSet(ColumnMapExpectation):
     map_metric = "column_values.list_in_set.custom"
-    success_keys = ("min_value", "strict_min", "max_value", "strict_max")
+    success_keys = ("min_value", "strict_min", "max_value", "strict_max","value_set")
 
     # Default values
     success_keys = ("mostly",)
@@ -105,7 +117,7 @@ class ExpectColumnListToBeInSet(ColumnMapExpectation):
         styling = runtime_configuration.get("styling")
         params = substitute_none_for_missing(
             configuration.kwargs,
-            ["column", "mostly", "row_condition", "condition_parser"],
+            ["column", "mostly", "row_condition", "condition_parser","value_set"],
         )
 
         if include_column_name:

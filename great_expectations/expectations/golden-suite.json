@@ -24,10 +24,10 @@
           "level3",
           "isBiomimicry",
           "url",
+          "mag_terms",
           "species",
           "absolute_relevancy",
-          "relative_relevancy",
-          "mag_terms"
+          "relative_relevancy"
         ]
       },
       "meta": {}
