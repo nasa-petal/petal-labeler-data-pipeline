@@ -24,10 +24,10 @@
           "level3",
           "isBiomimicry",
           "url",
+          "mag_terms",
           "species",
           "absolute_relevancy",
-          "relative_relevancy",
-          "mag_terms"
+          "relative_relevancy"
         ]
       },
       "meta": {}
@@ -174,7 +174,9 @@
           "chemically_assemble/break_down",
           "sense_send_process_information",
           "manipulate_solids_liquids_gases_energy"
-        ]
+        ],
+        "max_value": 1,
+        "min_value": 1
       },
       "meta": {}
     },
