@@ -267,6 +267,12 @@ def clean_labels(labels: list):
                     for label in labels]
     return clean_labels if clean_labels != "" else []
 
+def extract_dois(doi: str):
+    doi_obj = re.search(r'\b(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![\"&\'<>])\S)+)\b', doi)
+    if (doi_obj):
+        return doi_obj.group().upper()
+    else:
+        return ""
 
 if __name__ == "__main__":
     args = get_arg_parser()
@@ -274,7 +280,7 @@ if __name__ == "__main__":
     dataframe = dataframe.dropna(subset="url").fillna("")
     dataframe = dataframe.sort_values("petalID", axis=0, ascending=True)
     dataframe["doi"] = dataframe["doi"] \
-        .apply(lambda doi: re.search(r'\b(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![\"&\'<>])\S)+)\b', doi).group().upper())
+        .apply(extract_dois)
     (api_res, api_dois) = get_api_data(dataframe)
     golden_jsons = convert_to_json(dataframe, api_res, api_dois)
     
