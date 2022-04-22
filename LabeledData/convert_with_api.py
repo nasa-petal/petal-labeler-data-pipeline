@@ -101,9 +101,11 @@ def get_api_data(dataframe: pd.DataFrame):
         if (r.status_code == 200):
             temp_response = json.loads(r.text)
             found_doi = extract_dois(temp_response.get("doi", ""))
-            dataframe.at[i, "doi"] = found_doi
             if (len(found_doi) > 0):
                 valid_dois.append(found_doi)
+                dataframe.at[i, "doi"] = found_doi
+            else:
+                valid_dois.append(paper_dois[i])
             api_res.append(temp_response)
 
     return (api_res, valid_dois)
