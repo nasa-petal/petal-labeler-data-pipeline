@@ -33,3 +33,7 @@ stages:
     - path: update_golden.py
       md5: 8310b9ac0745597205c9a66c29a10242
       size: 3460
+  validate:
+    cmd:
+    - python ./FinalFile/ge_validate.py
+    - zip -r ./FinalFile/Reports/report_$(date +"%Y-%m-%dT%H-%M-%S").zip ./great_expectations/uncommitted/data_docs
