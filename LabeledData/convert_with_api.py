@@ -81,27 +81,50 @@ def get_api_data(dataframe: pd.DataFrame):
 
     # Define GET parameters
     url = "https://api.openalex.org/works/doi:"
+    urlID = "https://api.openalex.org/works/"
 
     # Make DOI requests in batches
-    paper_dois = dataframe[dataframe["doi"] != ""]["doi"].tolist()
+    paper_dois = dataframe["doi"].tolist()
+    valid_dois = []
     api_res = []
     total_size = len(paper_dois)
     for i in range(total_size):
         print("Progress: {0:0.2%}".format(i/total_size))
-
-        r = requests.get(url + paper_dois[i])
+        if (paper_dois[i] == ""):
+            continue
+        
+        if (len(dataframe.iloc[i].get("paper", "")) > 0):
+            r = requests.get(urlID + dataframe.iloc[i]["paper"])
+        else:
+            r = requests.get(url + paper_dois[i])
 
         if (r.status_code == 200):
             temp_response = json.loads(r.text)
+            found_doi = extract_dois(temp_response.get("doi", ""))
+            if (len(found_doi) > 0):
+                valid_dois.append(found_doi)
+                dataframe.at[i, "doi"] = found_doi
+            else:
+                valid_dois.append(paper_dois[i])
             api_res.append(temp_response)
 
-    return (api_res, paper_dois)
+    return (api_res, valid_dois)
 
 
 def extract_oa_id(urlID: str):
     if (type(urlID) != str):
         return ""
     return re.search(r"(?<=https://openalex.org/).*", urlID).group()
+
+
+def parse_list(key_val: str, row: list):
+    if (row.get(key_val, False)):
+        if (type(row[key_val]) == str):
+            return eval(row[key_val])
+        else:
+            return row[key_val]
+    else:
+        return []
 
 
 def convert_to_json(dataframe: pd.DataFrame, api_res: list, api_dois: list):
@@ -234,19 +257,13 @@ def convert_to_json(dataframe: pd.DataFrame, api_res: list, api_dois: list):
             # temp_dict["ask_level3"] = row.get("ask_label_level_3", [])
             temp_dict["isBiomimicry"] = row.get("isBiomimicry", "undetermined")
             temp_dict["url"] = row["url"]
-            temp_dict["species"] = row["species"]
-            temp_dict["absolute_relevancy"] = row["absolute_relevancy"]
-            temp_dict["relative_relevancy"] = row["relative_relevancy"]
-            if (row.get("mag_terms", False)):
-                if (type(row["mag_terms"]) == str):
-                    temp_dict["mag_terms"] = eval(row["mag_terms"])
-                else:
-                    temp_dict["mag_terms"] = row["mag_terms"]
-            else:
-                temp_dict["mag_terms"] = []
-
+            temp_dict["species"] = parse_list("species", row)
+            temp_dict["absolute_relevancy"] = parse_list("absolute_relevancy", row)
+            temp_dict["relative_relevancy"] = parse_list("relative_relevancy", row)
+            temp_dict["mag_terms"] = parse_list("mag_terms", row)
 
             golden_jsons.append(temp_dict)
+
         except Exception as error:
             print(traceback.format_exc())
             print(row["doi"])
@@ -267,6 +284,12 @@ def clean_labels(labels: list):
                     for label in labels]
     return clean_labels if clean_labels != "" else []
 
+def extract_dois(doi: str):
+    doi_obj = re.search(r'\b(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![\"&\'<>])\S)+)\b', doi)
+    if (doi_obj):
+        return doi_obj.group().upper()
+    else:
+        return ""
 
 if __name__ == "__main__":
     args = get_arg_parser()
@@ -274,7 +297,7 @@ if __name__ == "__main__":
     dataframe = dataframe.dropna(subset="url").fillna("")
     dataframe = dataframe.sort_values("petalID", axis=0, ascending=True)
     dataframe["doi"] = dataframe["doi"] \
-        .apply(lambda doi: re.search(r'\b(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![\"&\'<>])\S)+)\b', doi).group().upper())
+        .apply(extract_dois)
     (api_res, api_dois) = get_api_data(dataframe)
     golden_jsons = convert_to_json(dataframe, api_res, api_dois)
     
